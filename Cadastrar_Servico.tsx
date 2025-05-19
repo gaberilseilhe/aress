@@ -8,18 +8,10 @@ import { Link, useRouter } from 'expo-router';
 
 
 
-export default function CadastroUsuario() {
+export default function CadastroServico() {
     const [form, setForm] = useState({
-        name: '',
-        email: '',
-        celular: '',
-        password: '',
-        documento: '',
-        id_grupo: 'cliente',
-        cargo: 'vendedor',
-        status: 'ativo',
-        data_nascimento: new Date(),
-        avatar: null,
+        nome_servico: '',
+        valor: '',
     });
     const router = useRouter();
 
@@ -27,8 +19,7 @@ export default function CadastroUsuario() {
        const [showDatePicker, setShowDatePicker] = useState(false);
    
          const handleChooseAvatar = async () => {
-             let result = await ImagePicker.launchImageLibraryA
-             sync({
+             let result = await ImagePicker.launchImageLibraryAsync({
                  mediaTypes: ImagePicker.MediaTypeOptions.Images,
                  allowsEditing: true,
                  aspect: [1, 1],
@@ -55,74 +46,20 @@ export default function CadastroUsuario() {
             <View style={styles.Container_two}>
                 <Text style={{ textAlign: 'center', color: 'white', fontWeight: 'bold', fontSize: 27, bottom: 27, }}>Cadastro de usuario</Text>
                 <Input
-                    placeholder='Digite seu nome'
+                    placeholder='Digite o nome do serviço'
                     placeholderTextColor='gray'
-                    label="Nome"
-                    value={form.name}
-                    onChangeText={(text) => setForm({ ...form, name: text })}
+                    label="Nome do serviço"
+                    value={form.nome_servico}
+                    onChangeText={(text) => setForm({ ...form, nome_servico: text })}
                 />
                 <Input
-                    placeholder='Digite seu email'
-                    placeholderTextColor='gray'
-                    label="Email"
-                    value={form.email}
-                    keyboardType="email-address"
-                    onChangeText={(text) => setForm({ ...form, email: text })}
-                />
-                <Input
-                    placeholder='Digite seu numero'
+                    placeholder='Valor serviço'
                     placeholderTextColor={'gray'}
-                    label="Celular"
-                    value={form.celular}
-                    keyboardType="phone-pad"
-                    onChangeText={(text) => setForm({ ...form, celular: text })}
-                />
-                <Input
-                    placeholder='Digite sua senha'
-                    placeholderTextColor={'gray'}
-                    label="Senha"
-                    value={form.password}
-                    secureTextEntry
-                    onChangeText={(text) => setForm({ ...form, password: text })}
-                />
-                <Input
-                    placeholder='Digite seu documento'
-                    placeholderTextColor={'gray'}
-                    label="Documento"
-                    value={form.documento} 
-                    keyboardType="numeric"
-                    onChangeText={(text) => setForm({ ...form, documento: text })}
+                    label="Valor"
+                    value={form.valor}
+                    onChangeText={(text) => setForm({ ...form, valor: text })}
                 />
 
-                <Opções
-                    label="Grupo"
-                    selectedValue={form.id_grupo}
-                    onValueChange={(itemValue) => setForm({ ...form, id_grupo: itemValue })}
-                >
-                    <Picker.Item label="Admin" value="admin" />
-                    <Picker.Item label="Gerente" value="gerente" />
-                    <Picker.Item label="Funcionario" value="funcionario" />
-                    <Picker.Item label="Cliente" value="cliente" />
-                </Opções>
-
-                <Opções
-                    label="Cargo"
-                    selectedValue={form.cargo}
-                    onValueChange={(itemValue) => setForm({ ...form, cargo: itemValue })}
-                >
-                    <Picker.Item label="Vendedor" value="vendedor" />
-                    <Picker.Item label="Porteiro" value="porteiro" />
-                    <Picker.Item label="Guarda" value="guarda" />
-                    <Picker.Item label="Dono" value="dono" />
-                </Opções>
-                <Opções
-                    label="Status"
-                    selectedValue={form.status}
-                    onValueChange={(itemValue) => setForm({ ...form, status: itemValue })}
-                >
-                    <Picker.Item label="Ativo" value="ativo" />
-                    <Picker.Item label="Inativo" value="inativo" />
-                </Opções>
             </View>
             <View style={styles.back_button}>
 

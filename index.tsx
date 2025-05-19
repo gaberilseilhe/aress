@@ -1,6 +1,7 @@
 import { Link } from 'expo-router';
 import React from 'react';
 import { Dimensions, Image, Pressable, StyleSheet, Text, View } from 'react-native';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const { width } = Dimensions.get('window');
 const services = [
@@ -39,10 +40,10 @@ const services = [
 
 export default function HomeScreen() {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container}>
       <View style={styles.header}>
         <Image
-          source={{ uri: 'https://pngdownload.io/wp-content/uploads/2025/04/tralalero-tralala-Transparent-768x647.webp' }}
+          source={{ uri: 'https://us-tuna-sounds-images.voicemod.net/6fd4944e-eddf-44b5-a1fb-f1ac21e3d2b7-1742590499870.png' }}
           style={styles.logo}
         />
         <Text style={styles.username}>Olá</Text>
@@ -60,8 +61,13 @@ export default function HomeScreen() {
             </Pressable>
           </Link>
         ))}
+
+        <Text style={{color:'white', fontWeight:'bold',textAlign:'center',alignItems:'center',}}>
+
+
+        </Text>
       </View>
-    </View>
+    </ScrollView>
   );
 }
 

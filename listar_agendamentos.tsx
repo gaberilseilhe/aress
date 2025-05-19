@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { ImageBackground, StyleSheet, View, Text, TextInput, TouchableOpacity, Dimensions, FlatList, Pressable, Image } from 'react-native';
 import { Agendamentos } from '@/constants/agendamentos';
-import { Link } from 'expo-router';
 import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');

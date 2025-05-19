@@ -10,8 +10,11 @@ import {
   TextInput,
   Button,
 } from 'react-native';
-import { Link, useRouter} from 'expo-router';
+import { Link, useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
+import { Usuarios } from '@/constants/usuario';
+import { Servicos } from '@/constants/servicos';
+
 const { width, height } = Dimensions.get('window');
 
 export default function HomeScreen() {
@@ -19,13 +22,12 @@ export default function HomeScreen() {
   const [OpçãoSelecionada2, setOpçãoSelecionada2] = useState('');
 
   const [date, setDate] = useState('');
-  const [hour, setHour] = useState('');
 
-const router = useRouter();
+  const router = useRouter();
   return (
     <View style={styles.antepenultima}>
 
-<View style={styles.inputContainer}>
+      <View style={styles.inputContainer}>
         <Text style={styles.Text}>Data</Text>
         <TextInput
           style={styles.Picker}
@@ -37,21 +39,7 @@ const router = useRouter();
         />
 
       </View>
-
-      <View style={styles.inputContainer}>
-        <Text style={styles.Text}>Hora</Text>
-        <TextInput
-          style={styles.Picker}
-          placeholder="hh/mm"
-          value={hour}
-          keyboardType="numeric"
-          onChangeText={setHour}
-          maxLength={4}
-        />
-
-      </View>
-
-      <View>
+      
         <View style={styles.inputContainer}>
           <Text style={styles.Text}>Cliente</Text>
           <Picker
@@ -60,17 +48,14 @@ const router = useRouter();
             dropdownIconColor="white"
             style={styles.Picker}
           >
-            <Picker.Item label="Selecione um cliente" />
-            <Picker.Item label=" Germano" value="1" />
-            <Picker.Item label="Gabriel" value="2" />
-            <Picker.Item label="joao" value="3" />
-            <Picker.Item label="caue" value="4" />
-            <Picker.Item label="marco" value="5" />
+            {Usuarios().map((u) => {
+              return (
+                <Picker.Item label={u.nome} value={u.id} />
+              )
+            })}
           </Picker>
         </View>
-      </View>
 
-      <View>
         <View style={styles.inputContainer}>
           <Text style={styles.Text}>Serviço</Text>
           <Picker
@@ -79,31 +64,27 @@ const router = useRouter();
             dropdownIconColor="white"
             style={styles.Picker}
           >
-            <Picker.Item label="Selecione um Serviço" />
-            <Picker.Item label="Corte" value="1" />
-            <Picker.Item label="Escova" value="2" />
-            <Picker.Item label="Tratamento capilar" value="3" />
-            <Picker.Item label="Alisamento" value="4" />
-            <Picker.Item label="Progressiva" value="5" />
-            <Picker.Item label="Mechas-Luzes-Reflexos" value="6" />
-            <Picker.Item label="Sobrancelha" value="7" />
+            {Servicos().map((s) => {
+              return (
+                <Picker.Item label={s.nome_servico} value={s.id_servico} />
+              )
+            })}
           </Picker>
         </View>
-      </View>
       <View style={styles.viewbotoes}>
         <View style={styles.botao}>
-            <Pressable  onPress={() => router.back()}>
-              <View >
-                <Text style={{ color: '#fff' }}>
-                  Voltar ao Menu
-                </Text>
-              </View>
-            </Pressable>
+          <Pressable onPress={() => router.back()}>
+            <View >
+              <Text style={{ color: '#fff' }}>
+                Voltar ao Menu
+              </Text>
+            </View>
+          </Pressable>
         </View>
         <View style={styles.botao}>
           <TouchableOpacity>
             <Text style={{ color: '#fff' }} >
-              Confirmar
+              Continuar
             </Text>
           </TouchableOpacity>
         </View>
@@ -120,6 +101,8 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%',
     backgroundColor: '#222736',
+    backgroundImage: 'url(https://img.freepik.com/free-vector/gradient-black-background-with-wavy-lines_23-2149158069.jpg)'
+
   },
   Picker: {
     width: 235,
@@ -132,17 +115,13 @@ const styles = StyleSheet.create({
     borderColor: 'white',
     borderRadius: 15,
   },
-  Text: {
-    fontSize: 24,
-    padding:4,
-  },
   inputContainer: {
     flexDirection: 'column',
     alignItems: 'center',
     width: 270,
     borderBottomColor: 'white',
     marginTop: 10,
-    gap:5,
+    gap: 5,
   },
   botao: {
     width: 130,
@@ -163,9 +142,9 @@ const styles = StyleSheet.create({
     fontSize: 18,
     marginBottom: 10,
   },
-  Text:{
+  Text: {
     fontSize: 13,
-        fontWeight: 'bold',
-        color: 'white',
+    fontWeight: 'bold',
+    color: 'white',
   },
 });

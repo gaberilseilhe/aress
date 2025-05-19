@@ -22,7 +22,7 @@ export default function HomeScreen() {
                 </Pressable>
             </View>
 
-      <Text style={{ fontSize: 18, fontWeight: 'bold', textAlign: 'center', paddingVertical: 10, color: 'white', }}> Agendamentos </Text>
+      <Text style={{ fontSize: 18, fontWeight: 'bold', textAlign: 'center', paddingVertical: 10, color: 'white', }}> Agenda </Text>
       <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', marginVertical: 5, }}>
         <Text style={styles.indenficacao}>Id</Text>
         <Text style={styles.indenficacao}>dia</Text>
