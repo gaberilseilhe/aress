@@ -27,8 +27,7 @@ export default function CadastroUsuario() {
        const [showDatePicker, setShowDatePicker] = useState(false);
    
          const handleChooseAvatar = async () => {
-             let result = await ImagePicker.launchImageLibraryA
-             sync({
+             let result = await ImagePicker.launchImageLibraryAsync({
                  mediaTypes: ImagePicker.MediaTypeOptions.Images,
                  allowsEditing: true,
                  aspect: [1, 1],
@@ -89,10 +88,12 @@ export default function CadastroUsuario() {
                     placeholder='Digite seu documento'
                     placeholderTextColor={'gray'}
                     label="Documento"
-                    value={form.documento} 
+                    value={form.documento}
                     keyboardType="numeric"
                     onChangeText={(text) => setForm({ ...form, documento: text })}
                 />
+                
+                
 
                 <Opções
                     label="Grupo"
@@ -123,7 +124,15 @@ export default function CadastroUsuario() {
                     <Picker.Item label="Ativo" value="ativo" />
                     <Picker.Item label="Inativo" value="inativo" />
                 </Opções>
+                <TouchableOpacity style={{ backgroundColor: 'rgba(38, 46, 121, 0.55)', width: 300, height: 40, borderRadius: 5, borderWidth: 2, borderColor: 'blue', }}
+                    activeOpacity={0.6}
+                >
+                    <Text style={{ fontSize: 16, fontWeight: 'bold', color: 'white', textAlign: 'center', top: '20%', }}>
+                        Cadastrar
+                    </Text>
+                </TouchableOpacity>
             </View>
+
             <View style={styles.back_button}>
 
                 <Pressable onPress={() => router.back()}>
@@ -149,7 +158,7 @@ const styles = StyleSheet.create({
     },
     Container_two: {
         alignItems: 'center',
-        gap: 2,
+        gap: 4,
     },
     input: {
         borderWidth: 2,
@@ -171,20 +180,21 @@ const styles = StyleSheet.create({
         height: 55,
         backgroundColor: '#F3F3F3',
         borderRadius: 40,
-        borderColor: 'white',
+        borderColor:'white',
     },
     Text: {
         color: '#fff',
         textAlign: 'center',
     },
     back_button: {
-        width: 55,
-        height: 55,
+        width:55,
+        height:55,
         borderRadius: '100%',
-        left: '10%',
+        left:'10%',
+        marginTop:10,
     },
-    back_button_text: {
-        color: 'white',
-        textAlign: 'center',
+    back_button_text:{
+        color:'white',
+        textAlign:'center',
     }
 });

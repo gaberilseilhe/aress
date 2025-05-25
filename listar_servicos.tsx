@@ -1,36 +1,29 @@
 import React, { useState } from 'react';
 import { ImageBackground, Image, Pressable, StyleSheet, View, Text, TextInput, TouchableOpacity, Dimensions, FlatList } from 'react-native';
 import { Servicos } from '@/constants/servicos';
+import { Link } from 'expo-router';
 import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
 export default function HomeScreen() {
-  const navigation = useNavigation();
+    const navigation = useNavigation();
   return (
-    <View style={styles.container}>
+<View style={styles.container}>
       <View style={styles.view_botoes1}>
 
+       
+          <Pressable onPress={() => navigation.navigate('listas')}>
+            <View style={styles.viewimage}>
+              <Image
+                source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS06aZjr3UJfqZ1-908BUPbDpwV1JFXpt2ZUw&s' }}
+                style={styles.image}
+              />
+            </View>
+            <Text style={[styles.Text]}>Voltar</Text>
+          </Pressable>
 
-        <Pressable onPress={() => navigation.navigate('listas')}>
-          <View style={styles.viewimage}>
-            <Image
-              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS06aZjr3UJfqZ1-908BUPbDpwV1JFXpt2ZUw&s' }}
-              style={styles.image}
-            />
-          </View>
-          <Text style={[styles.Text]}>Voltar</Text>
-        </Pressable>
-        <Pressable onPress={() => navigation.navigate('Cadastrar_Servico')}>
-          <View style={styles.viewimage}>
-            <Image
-              source={{ uri: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSR9YGJ4UtT5ruWq-wEkvIGdIcgawsePQ6Rpg&s' }}
-              style={styles.image}
-            />
-          </View>
-          <Text style={[styles.Text]}>Adicionar</Text>
-        </Pressable>
-
+    
       </View>
       <Text style={{ fontSize: 18, fontWeight: 'bold', textAlign: 'center', paddingVertical: 10, color: 'white', }}> Serviços </Text>
       <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginVertical: 5, }}>
@@ -97,8 +90,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingHorizontal: width * 0.10,
-    top: height * 0.01,
+    paddingHorizontal:width * 0.10,
+    top:height * 0.01,
   },
   Text: {
     textAlign: 'center',

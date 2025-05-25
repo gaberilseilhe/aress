@@ -12,69 +12,71 @@ import {
 } from 'react-native';
 import { Link, useRouter } from 'expo-router';
 import { Picker } from '@react-native-picker/picker';
-import { Usuarios } from '@/constants/usuario';
-import { Servicos } from '@/constants/servicos';
+import { Agenda } from '@/constants/agenda';
+
 import { useNavigation } from '@react-navigation/native';
 
 const { width, height } = Dimensions.get('window');
 
 export default function HomeScreen() {
 
-   const navigation = useNavigation();
-   
-  const [OpçãoSelecionada, setOpçãoSelecionada] = useState('');
-  const [OpçãoSelecionada2, setOpçãoSelecionada2] = useState('');
+  const navigation = useNavigation();
 
-  const [date, setDate] = useState('');
+  const [OpçãoSelecionada, setOpçãoSelecionada] = useState('');
+  const [OpçãoSelecionada_2, setOpçãoSelecionada_2] = useState('');
+
+  const [hour, setHour] = useState('');
 
   const router = useRouter();
+
   return (
     <View style={styles.antepenultima}>
 
+
+
       <View style={styles.inputContainer}>
-        <Text style={styles.Text}>Data</Text>
-        <TextInput
+        <Text style={styles.Text}>Profissional</Text>
+        <Picker
+          selectedValue={OpçãoSelecionada}
+          onValueChange={(itemValue) => setOpçãoSelecionada(itemValue)}
+          dropdownIconColor="white"
           style={styles.Picker}
-          placeholder="dd/mm/aaaa"
-          value={date}
-          keyboardType="numeric"
-          onChangeText={setDate}
-          maxLength={8}
-        />
-
+        >
+          {Agenda().map((a) => {
+            return (
+               <Picker.Item label={a.id_usuario} value={a.id_usuario} />
+            )
+          })}
+        </Picker>
       </View>
-      
-        <View style={styles.inputContainer}>
-          <Text style={styles.Text}>Cliente</Text>
-          <Picker
-            selectedValue={OpçãoSelecionada}
-            onValueChange={(itemValue) => setOpçãoSelecionada(itemValue)}
-            dropdownIconColor="white"
-            style={styles.Picker}
-          >
-            {Usuarios().map((u) => {
-              return (
-                <Picker.Item label={u.nome} value={u.id} />
-              )
-            })}
-          </Picker>
-        </View>
 
+      <View style={styles.inputContainer}>
+        <Text style={styles.Text}>Dia da semana</Text>
+        <Picker
+          selectedValue={OpçãoSelecionada}
+          onValueChange={(itemValue) => setOpçãoSelecionada_2(itemValue)}
+          dropdownIconColor="white"
+          style={styles.Picker}
+        >
+          {Agenda().map((a) => {
+            return (
+              <Picker.Item label={a.dia_da_semana} value={a.dia_da_semana} />
+            )
+          })}
+        </Picker>
         <View style={styles.inputContainer}>
-          <Text style={styles.Text}>Serviço</Text>
-          <Picker
-            selectedValue={OpçãoSelecionada2}
-            onValueChange={(itemValue) => setOpçãoSelecionada2(itemValue)}
-            dropdownIconColor="white"
+          <Text style={styles.Text}>Data</Text>
+          <TextInput
             style={styles.Picker}
-          >
-            {Servicos().map((s) => {
-              return (
-                <Picker.Item label={s.nome_servico} value={s.id_servico} />
-              )
-            })}
-          </Picker>
+            placeholder="hh:mm"
+            keyboardType="numeric"
+            onChangeText={setHour}
+            maxLength={6}
+          />
         </View>
+      </View>
+
+
       <View style={styles.viewbotoes}>
         <View style={styles.botao}>
           <Pressable onPress={() => router.back()}>
@@ -86,7 +88,7 @@ export default function HomeScreen() {
           </Pressable>
         </View>
         <View style={styles.botao}>
-          <TouchableOpacity onPress={() => navigation.navigate('Cadastrar_Agenda')}>
+          <TouchableOpacity >
             <Text style={{ color: '#fff' }} >
               Continuar
             </Text>
